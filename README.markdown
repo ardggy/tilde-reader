@@ -4,23 +4,29 @@ The syntax suger of `complement`.
 
 `complement` 関数の糖衣構文を提供します。
 
-REQUIREMENT (in tested)
------------------------
-* SBCL
-* CMUCL
-
-This would work in other implementations, but yet tested.
-
-他の実装でも動作するとは思いますが、テストは試してません。
-
+REQUIREMENT
+-----------
+* unset-macro-character
 
 TESTING
-----
+-------
 
     (asdf:test-system :tilde-reader)
 
 USAGE
 -----
+
+Enable syntax in current readtable.
+
+構文を有効にします。
+
+    (tilde-reader:install)
+
+Disable syntax in current readtable.
+
+構文を無効にします。
+
+    (tilde-reader:uninstall)
 
 Complement of `lambda` predicate.
 
@@ -39,7 +45,7 @@ Complement of predicate.
     (remove-if ~#'null '(nil t))
     ; => (nil)
 
-Equivalent to following expression, either
+Equivalent to following expression,
 
 これは以下に相当する式です。
 
