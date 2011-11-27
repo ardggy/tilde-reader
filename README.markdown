@@ -4,9 +4,8 @@ The syntax suger of `complement`.
 
 `complement` 関数の糖衣構文を提供します。
 
-
-REQUIREMENT
------------
+REQUIREMENT (in tested)
+-----------------------
 * SBCL
 * CMUCL
 
@@ -64,7 +63,3 @@ Thank you for reading.
 ----------
 
 Copyright (C) Toshihisa Abe <<toshihisa.abe@gmail.com>>
-
-
-
-
