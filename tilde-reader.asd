@@ -8,7 +8,8 @@
   :components ((:file "package")
                (:file "tilde-reader"))
   :perform (asdf:test-op :before (op c)
-                         (asdf:load-system :tilde-reader.test))
+                         (let ((*readtable* (copy-readtable nil)))
+                           (asdf:load-system :tilde-reader.test)))
   :perform (asdf:test-op :after (op c)
                          (lisp-unit:run-all-tests :tilde-reader.test)))
 
