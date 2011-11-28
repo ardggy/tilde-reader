@@ -13,6 +13,14 @@ TESTING
 
     (asdf:test-system :tilde-reader)
 
+Run under following implementations:
+
+下記の実装でのテストを行っています。
+
+* SBCL 1.0.53
+* CMUCL 20b
+* Clozure CL 1.6
+
 USAGE
 -----
 
@@ -47,7 +55,7 @@ Complement of predicate.
 
 Equivalent to following expression,
 
-これは以下に相当する式です。
+これは以下のふたつの式に相当します。
 
     (remove-if (complement #'null) '(nil t))
 
