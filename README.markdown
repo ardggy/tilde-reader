@@ -20,6 +20,7 @@ Run under following implementations:
 * SBCL 1.0.53
 * CMUCL 20b, 20c
 * Clozure CL 1.6, 1.7
+* CLISP 2.49
 
 USAGE
 -----
