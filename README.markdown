@@ -18,8 +18,8 @@ Run under following implementations:
 下記の実装でのテストを行っています。
 
 * SBCL 1.0.53
-* CMUCL 20b
-* Clozure CL 1.6
+* CMUCL 20b, 20c
+* Clozure CL 1.6, 1.7
 
 USAGE
 -----
