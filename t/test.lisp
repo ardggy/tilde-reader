@@ -6,7 +6,7 @@
   (let ((*readtable* (copy-readtable nil)))
     (tilde-reader:install)
 
-    (multiple-value-bind (func non-term-p) (get-macro-character #\~)
+    (multiple-value-bind (func non-term-p) (get-macro-character #\~ *readtable*)
       (assert-eql (values #'tilde-reader.reader::tilde-reader t)
                   (values func non-term-p)))))
 
@@ -15,8 +15,17 @@
     (tilde-reader:install)
     (tilde-reader:uninstall)
 
-  (multiple-value-bind (func non-term-p) (get-macro-character #\~)
-    (assert-eql (values nil nil) (values func non-term-p)))))
+  (multiple-value-bind (func non-term-p) (get-macro-character #\~ *readtable*)
+    (assert-eql (get-macro-character #\~ (copy-readtable nil))
+                (values func non-term-p)))))
+
+(define-test #:restoring-test.caught-unbound-variable
+  (let ((*readtable* (copy-readtable nil)))
+    (tilde-reader:install)
+    (tilde-reader:uninstall)
+    ;; caught error by reference |~#|
+    (assert-error 'unbound-variable
+                    (remove-if ~#'null '(nil t)))))
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (tilde-reader:install))
