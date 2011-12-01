@@ -21,6 +21,7 @@
                 #:define-test
                 #:assert-eql
                 #:assert-equal
+                #:assert-error
                 #:run-all-tests)
   (:import-from #:tilde-reader
                 #:install
