@@ -4,7 +4,7 @@ The syntax suger of `complement`.
 
 `complement` 関数の糖衣構文を提供します。
 
-DEPEDENCY
+DEPENDENCY
 -----------
 * unset-macro-character
 
