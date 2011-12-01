@@ -19,7 +19,7 @@
     (assert-eql (get-macro-character #\~ (copy-readtable nil))
                 (values func non-term-p)))))
 
-(define-test #:restoring-test.caught-unbound-variable
+(define-test #:post-uninstall
   (let ((*readtable* (copy-readtable nil)))
     (tilde-reader:install)
     (tilde-reader:uninstall)
