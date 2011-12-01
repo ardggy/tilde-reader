@@ -11,10 +11,12 @@
 (in-package #:tilde-reader)
 
 (defun install ()
-  "install to readtable."
+  "install to current readtable."
+  (setf *readtable* (copy-readtable))
   (set-macro-character #\~ #'tilde-reader t))
 
 (defun uninstall ()
   "macro-character will be nil."
-  (unset-macro-character #\~))
+  (setf *readtable* (copy-readtable))
+  (unset-macro-character #\~ *readtable*))
 
