@@ -4,23 +4,24 @@ The syntax suger of `complement`.
 
 `complement` 関数の糖衣構文を提供します。
 
-REQUIREMENT
+DEPEDENCY
 -----------
 * unset-macro-character
 
-TESTING
--------
+TEST
+----
 
     (asdf:test-system :tilde-reader)
 
-Run under following implementations:
+Tested under the following implementations:
 
 下記の実装でのテストを行っています。
 
 * SBCL 1.0.53
-* CMUCL 20b, 20c
-* Clozure CL 1.6, 1.7
+* CMUCL 20b 20c
+* Clozure CL 1.6 1.7
 * CLISP 2.49
+* ECL 11.1
 
 USAGE
 -----
