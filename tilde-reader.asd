@@ -11,5 +11,5 @@
                          (let ((*readtable* (copy-readtable nil)))
                            (asdf:load-system :tilde-reader.test)))
   :perform (asdf:test-op :after (op c)
-                         (lisp-unit:run-all-tests :tilde-reader.test)))
+                         (funcall (intern "RUN!" :5am) :tilde-reader.test)))
 
