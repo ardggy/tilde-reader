@@ -2,42 +2,51 @@
 
 (in-package #:tilde-reader.test)
 
-(define-test #:install
+(5am:def-suite :tilde-reader.test)
+
+(5am:def-suite :installation :in :tilde-reader.test)
+(5am:def-suite :runtime :in :tilde-reader.test)
+
+(5am:in-suite :installation)
+
+(5am:test :install
   (let ((*readtable* (copy-readtable nil)))
     (tilde-reader:install)
 
     (multiple-value-bind (func non-term-p) (get-macro-character #\~ *readtable*)
-      (assert-eql (values #'tilde-reader.reader::tilde-reader t)
-                  (values func non-term-p)))))
+      (5am:is (eql #'tilde-reader.reader::tilde-reader func))
+      (5am:is (eq t non-term-p)))))
 
-(define-test #:uninstall
+(5am:test :uninstall
   (let ((*readtable* (copy-readtable nil)))
     (tilde-reader:install)
     (tilde-reader:uninstall)
 
   (multiple-value-bind (func non-term-p) (get-macro-character #\~ *readtable*)
-    (assert-eql (get-macro-character #\~ (copy-readtable nil))
-                (values func non-term-p)))))
+    (5am:is (equal (multiple-value-list (get-macro-character #\~ (copy-readtable nil)))
+                   (multiple-value-list (values func non-term-p)))))))
 
-(define-test #:post-uninstall
+(5am:test :post-uninstall
   (let ((*readtable* (copy-readtable nil)))
     (tilde-reader:install)
     (tilde-reader:uninstall)
     ;; caught error by reference |~#|
-    (assert-error 'unbound-variable
-                    (remove-if ~#'null '(nil t)))))
+    (let ((form (read-from-string "(remove-if ~#'null '(nil t))")))
+      (5am:signals unbound-variable (eval form)))))
+
+(5am:in-suite :runtime)
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (tilde-reader:install))
 
-(define-test #:lambda.0
-  (assert-eql nil (funcall ~(lambda () t))))
+(5am:test :lambda.0
+  (5am:is-false (funcall ~(lambda () t))))
 
-(define-test #:lambda.1
-  (assert-eql t (funcall ~#'(lambda () nil))))
+(5am:test :lambda.1
+  (5am:is-true (funcall ~#'(lambda () nil))))
 
-(define-test #:named-function
-  (assert-equal '(nil) (remove-if ~#'null '(t nil))))
+(5am:test :named.0
+  (5am:is (equal '(nil) (remove-if ~#'null '(t nil)))))
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (tilde-reader:uninstall))
