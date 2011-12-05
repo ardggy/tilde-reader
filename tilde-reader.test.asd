@@ -4,8 +4,7 @@
 
 (asdf:defsystem #:tilde-reader.test
   :serial t
-  :depends-on (#:tilde-reader
-               #:lisp-unit)
+  :depends-on (#:tilde-reader #:fiveam)
   :components ((:file "package")
                (:module "t"
                         :components ((:file "test")))))
