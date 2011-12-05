@@ -30,7 +30,7 @@
   (let ((*readtable* (copy-readtable nil)))
     (tilde-reader:install)
     (tilde-reader:uninstall)
-    ;; caught error by reference |~#|
+    ;; catch error by reference |~#|
     (let ((form (read-from-string "(remove-if ~#'null '(nil t))")))
       (5am:signals unbound-variable (eval form)))))
 
