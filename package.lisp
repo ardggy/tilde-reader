@@ -17,12 +17,6 @@
 
 (defpackage #:tilde-reader.test
   (:use #:cl)
-  (:import-from #:lisp-unit
-                #:define-test
-                #:assert-eql
-                #:assert-equal
-                #:assert-error
-                #:run-all-tests)
   (:import-from #:tilde-reader
                 #:install
                 #:uninstall)
