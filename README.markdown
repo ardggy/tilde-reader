@@ -7,6 +7,7 @@ The syntax suger of `complement`.
 DEPENDENCY
 -----------
 * unset-macro-character
+* fiveam
 
 TEST
 ----
