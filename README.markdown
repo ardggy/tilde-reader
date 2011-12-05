@@ -73,7 +73,6 @@ TODO
 ----
 
 * Refactoring the tests.
-* Loading without lisp-unit.
 
 LICENCE
 -------
